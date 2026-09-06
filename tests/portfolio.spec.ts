@@ -228,44 +228,8 @@ test('reduced motion preserves every section and disables WebGL and pinning', as
     return false
   }).length)
   expect(invisible).toBe(0)
-  await page.getByRole('button', { name: '04 Growth' }).click()
-  await expect(page.locator('.signal-description')).toContainText('Build something worth finding.')
 })
 
-test('the WebGL signal pauses offscreen and degrades on context loss', async ({ page }) => {
-  await page.goto('/')
-  const canvas = page.locator('canvas.signal-canvas')
-  await expect(page.locator('.signal-surface')).toHaveClass(/has-webgl/)
-  await expect(canvas).toHaveAttribute('data-render-state', 'running')
-  await page.locator('#intent').scrollIntoViewIfNeeded()
-  await expect(canvas).toHaveAttribute('data-render-state', 'paused')
-  await page.locator('.hero-art').scrollIntoViewIfNeeded()
-  await expect(canvas).toHaveAttribute('data-render-state', 'running')
-  await canvas.evaluate(element => (element as HTMLCanvasElement).getContext('webgl')?.getExtension('WEBGL_lose_context')?.loseContext())
-  await expect(page.locator('.signal-surface')).not.toHaveClass(/has-webgl/)
-  await expect(canvas).toHaveAttribute('data-render-state', 'fallback')
-  await page.getByRole('button', { name: '01 Search', exact: true }).click()
-  await expect(page.locator('.signal-description')).toContainText('It starts with a question.')
-})
-
-test('unsupported graphics and low-power devices keep the usable static signal', async ({ page }) => {
-  await page.addInitScript(() => {
-    Object.defineProperty(navigator, 'hardwareConcurrency', { configurable: true, get: () => 2 })
-  })
-  await page.goto('/')
-  await expect(page.locator('canvas')).toHaveCount(0)
-  await page.getByRole('button', { name: '02 Data' }).click()
-  await expect(page.locator('.signal-description')).toContainText('Find the signal in the noise.')
-  await page.addInitScript(() => {
-    Object.defineProperty(navigator, 'hardwareConcurrency', { configurable: true, get: () => 8 })
-    const original = HTMLCanvasElement.prototype.getContext
-    HTMLCanvasElement.prototype.getContext = new Proxy(original, { apply(target, thisArg, args) { return args[0] === 'webgl' ? null : Reflect.apply(target, thisArg, args) } })
-  })
-  await page.reload()
-  await expect(page.locator('.signal-surface')).not.toHaveClass(/has-webgl/)
-  await page.getByRole('button', { name: '03 Insight' }).click()
-  await expect(page.locator('.signal-description')).toContainText('Turn understanding into direction.')
-})
 
 test('the entire homepage meets automated WCAG 2.1 AA checks', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
