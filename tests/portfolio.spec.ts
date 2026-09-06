@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { readFile } from 'node:fs/promises'
+import { isUnexpectedConsoleMessage } from '../scripts/test-console'
 
 // Exercise the actual GPU path on capable test browsers. Low-power cases below
 // explicitly override these values again before loading the page.
@@ -14,7 +15,7 @@ test.beforeEach(async ({ page }) => {
 test('the editorial homepage renders without runtime errors', async ({ page }) => {
   const errors: string[] = []
   page.on('pageerror', error => errors.push(error.message))
-  page.on('console', message => { if (message.type() === 'error' || message.type() === 'warning') errors.push(message.text()) })
+  page.on('console', message => { if (isUnexpectedConsoleMessage(message)) errors.push(message.text()) })
   await page.goto('/')
   await expect(page).toHaveTitle('Reecha Thapa — Search, with purpose.')
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Turning search into your next big opportunity.')

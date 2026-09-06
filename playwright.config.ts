@@ -8,7 +8,9 @@ export default defineConfig({
   timeout: 35_000,
   expect: { timeout: 8_000 },
   retries: 0,
-  reporter: [['list'], ['html', { open: 'never' }]],
+  reporter: process.env.CI
+    ? [['list'], ['github'], ['html', { open: 'never' }]]
+    : [['list'], ['html', { open: 'never' }]],
   use: {
     baseURL: process.env.TEST_BASE_URL || 'http://localhost:5173',
     viewport: { width: 1440, height: 960 },

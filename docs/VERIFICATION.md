@@ -1,6 +1,31 @@
 # Verification — 6 September 2026
 
-## Executed successfully
+## CI failure follow-up
+
+The pull-request run failed only the homepage runtime smoke test: **26 tests
+passed, 1 failed**. The assertion collected Chromium's driver warning
+`GPU stall due to ReadPixels` as an application error. The workflow runs for both
+pushes and pull requests, so the same commit had two failing quality checks.
+
+The console check now allows only that exact driver-warning format (including
+its final repetition notice). Uncaught page errors, every console error, and
+other warnings—including other WebGL diagnostics—still fail. Three regression
+tests cover the exception, near-matches, errors, and informational output.
+Playwright's GitHub reporter now annotates failing assertions directly in CI.
+
+Verified after the fix:
+
+- `npm run lint` — passed.
+- `npm run build` — passed.
+- `CI=true npm test` — **30 tests passed** against the development server.
+- `git diff --check` — passed.
+
+This local verification used the existing Chromium 149 sandbox fallback; the
+standard Playwright browser download was unavailable in this environment. A new
+GitHub Actions run on the fixed commit is still needed to verify the hosted
+runner. Re-running an old commit does not include this fix.
+
+## Initial portfolio verification
 
 - `npm run lint` — no errors or warnings.
 - `npm run build` — TypeScript and optimized Vite production build pass.
