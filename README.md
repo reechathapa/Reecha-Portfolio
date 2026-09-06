@@ -130,3 +130,9 @@ copy/download, persisted pause, reduced motion, WebGL pause/context loss/failure
 and 320/390/768px layouts. Axe checks the complete desktop and touch pages plus
 the three dialog types against WCAG 2.1 AA rules. Automated checks supplement,
 not replace, manual keyboard, screen-reader, and device review.
+
+The runtime smoke test rejects uncaught exceptions, console errors, and unexpected
+warnings. It allows only Chromium's specific `GPU stall due to ReadPixels` driver
+warning seen during headless CI capture; other WebGL warnings still fail the test.
+CI also uses Playwright's GitHub reporter to annotate the actual failing assertion,
+in addition to retaining the HTML report, screenshots, and traces on failure.
