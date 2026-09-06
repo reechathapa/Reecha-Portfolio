@@ -1,7 +1,7 @@
 import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { AnimatePresence, motion, useInView } from 'motion/react'
-import { ArrowDown, ArrowUpRight, ChartNoAxesCombined, Crosshair, Database, MoveUpRight, Search, Sparkles } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, ChartNoAxesCombined, Database, MoveUpRight, Search, Sparkles } from 'lucide-react'
 import { gsap } from 'gsap'
 import { useMotionSettings } from './MotionProvider'
 import { useMediaQuery } from '../hooks/useMediaQuery'
@@ -58,7 +58,6 @@ function HeroSignal() {
     <div className={`signal-surface ${ready && canRender ? 'has-webgl' : ''}`}>
       <div className="signal-grain" aria-hidden="true" />
       {near && canRender && <OptionalVisual><Suspense fallback={null}><SignalCanvas active={visible} phase={phase} onReady={onReady} /></Suspense></OptionalVisual>}
-      <div className="signal-topline"><span><span className="status-dot" /> A CONNECTED WAY OF THINKING</span><Crosshair size={17} strokeWidth={1.2} aria-hidden="true" /></div>
       <div className="signal-map" aria-hidden="true">
         <svg className="signal-routes" viewBox="0 0 520 345" fill="none">
           <defs><linearGradient id="route-gradient" x1="50" y1="290" x2="480" y2="60" gradientUnits="userSpaceOnUse"><stop stopColor="#91aa66" /><stop offset="1" stopColor="#507624" /></linearGradient></defs>
