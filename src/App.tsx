@@ -3,6 +3,7 @@ import { AnimatePresence, LayoutGroup } from 'motion/react'
 import { MotionProvider } from './components/MotionProvider'
 import Header from './components/Header'
 import Hero from './components/Hero'
+import ExperienceSection from './components/Experience'
 import Work from './components/Work'
 import IntentEngine from './components/IntentEngine'
 import CaseStudy from './components/CaseStudy'
@@ -25,8 +26,8 @@ export default function App() {
   return <MotionProvider><LayoutGroup id="reecha">
     <a href="#main-content" className="skip-link">Skip to content</a>
     <Header onContact={onContact} />
-    <main id="main-content" ref={main} tabIndex={-1}><Hero onContact={onContact} /><Work onProject={project => setOverlay({ type: 'project', project })} /><IntentEngine /><CaseStudy /><Capabilities /><Process /><Performance /><About onContact={onContact} /><Notes onNote={note => setOverlay({ type: 'note', note })} /></main>
+    <main id="main-content" ref={main} tabIndex={-1}><Hero onContact={onContact} /><ExperienceSection onExperience={experience => setOverlay({ type: 'experience', experience })} /><Work onProject={project => setOverlay({ type: 'project', project })} /><IntentEngine /><CaseStudy /><Capabilities /><Process /><Performance /><About onContact={onContact} /><Notes onNote={note => setOverlay({ type: 'note', note })} /></main>
     <Footer onContact={onContact} />
-    <Suspense fallback={<div className="overlay-loading" role="status">Opening…</div>}><AnimatePresence>{overlay && <Overlay key={overlay.type === 'project' ? overlay.project.id : overlay.type === 'note' ? overlay.note.id : 'contact'} state={overlay} onClose={() => setOverlay(null)} />}</AnimatePresence></Suspense>
+    <Suspense fallback={<div className="overlay-loading" role="status">Opening…</div>}><AnimatePresence>{overlay && <Overlay key={overlay.type === 'project' ? overlay.project.id : overlay.type === 'note' ? overlay.note.id : overlay.type === 'experience' ? overlay.experience.id : 'contact'} state={overlay} onClose={() => setOverlay(null)} />}</AnimatePresence></Suspense>
   </LayoutGroup></MotionProvider>
 }

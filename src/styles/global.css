@@ -201,6 +201,37 @@
   .gradient-hero .scroll-cue { color: #c2cdb4; }
   @keyframes gradient-bar-flow { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.905); } }
 
+  /* Career experiences: page scroll drives a pinned, sideways timeline. */
+  .experience-section { padding-block: 104px 40px; }
+  .experience-intro .section-heading { margin-bottom: 0; }
+  .experience-intro h2 { font-size: clamp(42px, 4.05vw, 58px); }
+  .experience-track { position: relative; height: 280vh; }
+  .experience-track:not(.experience-track-pinned) { height: auto; }
+  .experience-viewport { position: sticky; top: 104px; display: flex; flex-direction: column; justify-content: center; gap: 26px; overflow: hidden; padding-block: 20px; }
+  .experience-track-pinned .experience-viewport { min-height: calc(100dvh - 150px); padding-bottom: 30px; }
+  .experience-track:not(.experience-track-pinned) .experience-viewport { position: static; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; }
+  .experience-rail { display: flex; gap: 24px; padding-inline: max(56px, calc((100vw - 1312px) / 2)); width: max-content; will-change: transform; }
+  .experience-card { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; width: 372px; min-height: 268px; flex-shrink: 0; scroll-snap-align: center; text-align: left; padding: 30px 30px 26px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); transition: border-color 0.25s, box-shadow 0.25s; }
+  .experience-card:hover { border-color: #bccaa9; box-shadow: 0 16px 44px #2a35201a; }
+  .experience-card-index { position: absolute; top: 22px; right: 26px; font: italic 34px / 1 var(--serif); color: #7e9065; }
+  .experience-card-top { display: flex; align-items: center; gap: 10px; }
+  .experience-date { display: inline-flex; align-items: center; gap: 8px; padding: 6px 11px; border: 1px solid #dbe0d1; border-radius: 99px; font-size: 9.5px; font-weight: 600; letter-spacing: 0.04em; color: #63705a; }
+  .experience-company { font-size: 24px; line-height: 1.25; letter-spacing: -0.04em; font-weight: 500; padding-right: 44px; }
+  .experience-role { font-size: 12px; line-height: 1.7; color: var(--olive); font-weight: 650; }
+  .experience-card-foot { display: inline-flex; align-items: center; gap: 9px; margin-top: auto; font-size: 10.5px; font-weight: 600; color: var(--muted); }
+  .experience-card:hover .experience-card-foot { color: var(--ink); }
+  .experience-card-foot svg { transition: transform 0.25s; }
+  .experience-card:hover .experience-card-foot svg { transform: translate(2px, -2px); }
+  .experience-progress { height: 2px; background: #dfe4d6; margin-inline: max(56px, calc((100vw - 1312px) / 2)); border-radius: 99px; overflow: hidden; }
+  .experience-progress > span { display: block; height: 100%; background: var(--olive); border-radius: 99px; }
+  .experience-hint { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #66705c; margin-top: 18px; }
+  .experience-detail { padding: 58px 58px 44px; }
+  .experience-detail > .eyebrow { color: #5f7152; font-size: 8px; }
+  .experience-detail h2 { font-size: clamp(34px, 4vw, 46px); margin-top: 18px; }
+  .experience-detail-role { font-size: 13px; font-weight: 650; color: var(--olive); margin-top: 12px; }
+  .experience-detail .dialog-intro { font-size: 15px; color: #566b45; margin-top: 20px; }
+  .experience-detail h3 { font-size: 20px; letter-spacing: -0.03em; margin-top: 30px; }
+
   /* Work: three carefully art-directed, explicitly conceptual brands. */
   .work-section { padding-top: 79px; }
   .work-heading { margin-bottom: 31px; }
@@ -614,6 +645,8 @@
   }
   @media (max-width: 1199px) {
     .container { width: calc(100% - 80px); }
+    .experience-rail { padding-inline: 40px; }
+    .experience-progress { margin-inline: 40px; }
     .section-pad { padding-block: 85px; }
     .hero { padding-top: 52px; }
     .hero-main { gap: 32px; }
@@ -771,6 +804,11 @@
   }
   @media (max-width: 799px) {
     .container { width: calc(100% - 40px); }
+    .experience-section { padding-block: 70px 30px; }
+    .experience-card { width: 82vw; min-height: 240px; padding: 24px; }
+    .experience-company { font-size: 20px; }
+    .experience-rail { gap: 16px; padding-inline: 20px; }
+    .experience-detail { padding: 46px 26px 32px; }
     .section-pad { padding-block: 70px; }
     html { scroll-padding-top: 95px; scrollbar-gutter: auto; }
     .header-inner { height: 72px; gap: 14px; }

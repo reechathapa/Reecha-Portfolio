@@ -33,7 +33,7 @@ export default function IntentEngine() {
   }
   return <section className="intent-section section-pad" id="intent" aria-labelledby="intent-heading">
     <div className="container">
-      <Reveal><SectionLabel number="02" light>THE SEARCH INTENT ENGINE</SectionLabel></Reveal>
+      <Reveal><SectionLabel number="03" light>THE SEARCH INTENT ENGINE</SectionLabel></Reveal>
       <div className="section-heading"><Reveal><h2 id="intent-heading">Behind every search,<br />there’s <span className="serif">a person.</span></h2></Reveal><Reveal delay={0.1}><p>Intent is the bridge between being found and being chosen. Follow a search from a real need to a meaningful next step.</p></Reveal></div>
       <Reveal className="intent-interactive" delay={0.08}>
         <div className="intent-topbar"><span className="eyebrow"><span className="status-dot" /> FOLLOW THE INTENT</span><AnimatedTabs id="intent" label="Explore search intent" value={selected} onChange={select} className="tabs-dark" items={intents.map((item, index) => ({ id: item.id, label: item.label, icon: iconMap[index] }))} /></div>

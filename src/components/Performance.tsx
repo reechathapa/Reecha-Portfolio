@@ -29,7 +29,7 @@ export default function Performance() {
     return () => { timeline.kill() }
   }, [path, inView, enabled])
   return <section className="performance-section section-pad" id="performance" aria-labelledby="performance-heading"><div className="container">
-    <Reveal><SectionLabel number="06">THE PERFORMANCE PICTURE</SectionLabel></Reveal>
+    <Reveal><SectionLabel number="07">THE PERFORMANCE PICTURE</SectionLabel></Reveal>
     <div className="section-heading"><Reveal><h2 id="performance-heading">Visibility is just<br /><span className="serif">the beginning.</span></h2></Reveal><Reveal delay={0.1}><p>A useful dashboard connects attention to action.<br />Here’s what that story could look like.</p></Reveal></div>
     <div className="performance-wall"><div className="performance-metrics" role="group" aria-label="Select a performance metric">{performanceSeries.map(item => <motion.button key={item.id} type="button" className={`performance-metric${selected === item.id ? ' is-active' : ''}`} onClick={() => setSelected(item.id)} aria-pressed={selected === item.id} whileHover={enabled ? { x: 3 } : undefined}>
       <span className="metric-top">{item.name}<ArrowUpRight size={18} strokeWidth={1.5} /></span><AnimatedNumber value={item.value} prefix={item.prefix} suffix={item.suffix} decimals={item.decimals} /><span className="metric-context">{item.context}</span>{selected === item.id && <motion.span className="metric-indicator" layoutId="metric-indicator" transition={{ duration: enabled ? 0.3 : 0 }} />}

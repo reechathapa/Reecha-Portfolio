@@ -6,8 +6,9 @@ import { useMotionSettings } from './MotionProvider'
 import { ProjectArtwork } from './Work'
 import type { Project } from '../data/projects'
 import type { Note } from '../data/notes'
+import type { Experience } from '../data/experiences'
 
-export type OverlayState = { type: 'project'; project: Project } | { type: 'note'; note: Note } | { type: 'contact' }
+export type OverlayState = { type: 'project'; project: Project } | { type: 'note'; note: Note } | { type: 'experience'; experience: Experience } | { type: 'contact' }
 
 export default function Overlay({ state, onClose }: { state: OverlayState; onClose: () => void }) {
   const dialog = useRef<HTMLDialogElement>(null)
@@ -42,6 +43,7 @@ export default function Overlay({ state, onClose }: { state: OverlayState; onClo
     <div className="dialog-inner"><button className="dialog-close icon-button" type="button" aria-label="Close dialog" onClick={onClose}><X size={20} /></button>
       {state.type === 'project' && <ProjectDetail project={state.project} onClose={() => { destination.current = document.getElementById('case-heading'); onClose() }} />}
       {state.type === 'note' && <NoteDetail note={state.note} />}
+      {state.type === 'experience' && <ExperienceDetail experience={state.experience} />}
       {state.type === 'contact' && <ContactForm />}
     </div>
   </motion.dialog>
@@ -60,6 +62,17 @@ function ProjectDetail({ project, onClose }: { project: Project; onClose: () => 
 
 function NoteDetail({ note }: { note: Note }) {
   return <article className="note-detail"><div className="eyebrow">FIELD NOTES / {note.category} / {note.readTime}</div><h2 id="dialog-title">{note.title}</h2><div className="note-author"><span className="note-avatar">r.</span><div><strong>Reecha Thapa</strong><span>A perspective on thoughtful organic growth</span></div></div><p className="dialog-intro">{note.intro}</p>{note.sections.map(section => <section key={section.heading}><h3>{section.heading}</h3>{section.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</section>)}<blockquote>{note.takeaway}</blockquote><div className="note-end">LESS NOISE. MORE UNDERSTANDING.<ArrowUpRight size={16} /></div></article>
+}
+
+function ExperienceDetail({ experience }: { experience: Experience }) {
+  return <article className="experience-detail">
+    <div className="eyebrow"><span className="status-dot" /> CAREER EXPERIENCE / {experience.from.toUpperCase()} — {experience.to.toUpperCase()}</div>
+    <motion.h2 id="dialog-title" layoutId={`experience-company-${experience.id}`}>{experience.company}</motion.h2>
+    <p className="experience-detail-role">{experience.role}</p>
+    <p className="dialog-intro">{experience.summary}</p>
+    <h3>What the role involved</h3>
+    <ol className="project-approach">{experience.highlights.map((item, index) => <li key={item}><span>0{index + 1}</span>{item}</li>)}</ol>
+  </article>
 }
 
 type BriefFields = { name: string; email: string; website: string; interest: string; goal: string }

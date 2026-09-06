@@ -33,7 +33,7 @@ export default function Work({ onProject }: { onProject: (project: Project) => v
   const { enabled } = useMotionSettings()
   const filtered = projects.filter(project => filter === 'all' || project.categoryId === filter)
   return <section id="work" className="work-section section-pad container" aria-labelledby="work-heading">
-    <Reveal><SectionLabel number="01">SELECTED EXPLORATIONS</SectionLabel></Reveal>
+    <Reveal><SectionLabel number="02">SELECTED EXPLORATIONS</SectionLabel></Reveal>
     <div className="section-heading work-heading"><Reveal><h2 id="work-heading">Strategy, <span className="serif">put to work.</span></h2></Reveal><Reveal delay={0.08}><p>Different challenges. One common thread:<br />finding the opportunity that matters.</p></Reveal></div>
     <Reveal><div className="work-toolbar"><AnimatedTabs id="work" label="Filter project concepts" value={filter} onChange={setFilter} items={[{ id: 'all', label: 'All work' }, { id: 'ecommerce', label: 'E-commerce' }, { id: 'saas', label: 'B2B SaaS' }, { id: 'local', label: 'Local discovery' }]} /><span className="concept-label">INDEPENDENT CONCEPT STUDIES <span>↙</span></span></div></Reveal>
     <motion.div layout={enabled} className="work-grid" role="tabpanel" id="work-panel" aria-labelledby={`work-tab-${filter}`} tabIndex={0}>

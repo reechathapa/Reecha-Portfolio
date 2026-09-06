@@ -41,7 +41,7 @@ export default function CaseStudy() {
     target?.scrollIntoView({ behavior: enabled ? 'smooth' : 'instant', block: 'center' })
   }
   return <section className="case-section section-pad container" id="case-study" aria-labelledby="case-heading">
-    <Reveal><SectionLabel number="03">A CLOSER LOOK</SectionLabel></Reveal>
+    <Reveal><SectionLabel number="04">A CLOSER LOOK</SectionLabel></Reveal>
     <div className="section-heading"><Reveal><h2 id="case-heading" tabIndex={-1}>From found<br />to <span className="serif">chosen.</span></h2></Reveal><Reveal delay={0.08}><div className="case-intro"><span className="case-brand"><Leaf size={19} strokeWidth={1.4} /> Verdant <span>CONCEPT STUDY</span></span><p>A search-led strategy for an imagined plant brand. Three chapters. One connected way forward.</p></div></Reveal></div>
     <div className="case-journey" ref={root}>
       <div className="case-board-column"><div className="case-board" ref={board}>
