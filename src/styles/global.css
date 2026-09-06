@@ -157,6 +157,50 @@
   .scroll-cue svg { transition: transform 0.25s; }
   .scroll-cue:hover svg { transform: translateY(3px); }
 
+  /* Gradient-bar hero: the 21st.dev waitlist hero treatment, restyled with the
+     portfolio's own copy, navigation, and signal system. */
+  .gradient-hero { position: relative; isolation: isolate; overflow: hidden; background: #060806; color: #f3f6eb; padding-top: 76px; }
+  .gradient-hero::before { content: ''; position: absolute; inset: 0; z-index: -3; background: radial-gradient(ellipse at 50% 116%, rgba(255, 56, 0, 0.2), transparent 57%), linear-gradient(180deg, #0a0c0a, #050605 54%, #070707); }
+  .gradient-bars { position: absolute; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
+  .gradient-bar { position: absolute; bottom: -7%; top: auto; width: var(--gradient-width); left: var(--gradient-left); height: var(--gradient-height); background: linear-gradient(to top, var(--gradient-color), transparent 90%); opacity: var(--gradient-opacity); transform-origin: bottom; animation: gradient-bar-flow var(--gradient-duration) ease-in-out var(--gradient-delay) infinite; }
+  .gradient-hero::after { content: ''; position: absolute; inset: 0; z-index: 0; background: linear-gradient(180deg, rgba(6, 8, 6, 0.62), transparent 25%, transparent 70%, rgba(6, 8, 6, 0.52)); pointer-events: none; }
+  .hero-grain { position: absolute; inset: 0; z-index: 0; background-image: radial-gradient(rgba(255, 255, 255, 0.06) 0.5px, transparent 0.6px); background-size: 6px 6px; opacity: 0.22; pointer-events: none; }
+  .gradient-hero-inner { position: relative; z-index: 1; }
+  .gradient-hero-main { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 44px; min-height: 650px; text-align: center; }
+  .gradient-hero-content { max-width: 780px; }
+  .gradient-hero .hero-eyebrow { color: #b8c5aa; }
+  .gradient-hero .hero-eyebrow .status-dot { background: var(--lime); box-shadow: 0 0 0 4px #70472a; }
+  .gradient-hero h1 { color: #f4f7ed; }
+  .gradient-hero h1 .serif { color: #f3683b; }
+  .gradient-hero .hero-copy { color: #b8c1ad; max-width: 560px; margin-inline: auto; }
+  .gradient-hero .hero-ctas { justify-content: center; gap: 24px; }
+  .gradient-hero .text-link { color: #e8eddf; }
+  .gradient-hero .text-link svg { color: var(--lime); }
+  .gradient-hero .hero-art { width: min(760px, 100%); margin-inline: auto; }
+  .gradient-hero .signal-surface { border-color: #3a4734; background: radial-gradient(ellipse at 50% 30%, #1b2218, #11150f 58%, #080b08); color: #dfe8d7; }
+  .gradient-hero .signal-grain { background-image: radial-gradient(#b4c59b 0.6px, transparent 0.7px); opacity: 0.12; }
+  .gradient-hero .signal-topline { color: #a7b49a; }
+  .gradient-hero .signal-topline .status-dot { background: var(--lime); }
+  .gradient-hero .query-fragment { background: #0d120dcc; border-color: #3a4633; color: #c7d3b8; box-shadow: 0 5px 18px #0007; }
+  .gradient-hero .insight-node { background: #293329; border-color: #556049; color: #d1ee9f; box-shadow: 0 10px 30px #0008; }
+  .gradient-hero .insight-node span { color: #c6d7b0; }
+  .gradient-hero .growth-note { color: #a6c17e; }
+  .gradient-hero .map-label, .gradient-hero .signal-coordinate { color: #7d8d6f; }
+  .gradient-hero .signal-stages { border-color: #3b4734; background: #101510d9; }
+  .gradient-hero .signal-stages button { color: #c1cdb2; }
+  .gradient-hero .signal-stages button:hover { background: #1d281d; }
+  .gradient-hero .signal-stage-active { background: #456b2d; }
+  .gradient-hero .signal-description { color: #aab89c; }
+  .gradient-hero .hero-art-caption { color: #8c9b7b; }
+  .gradient-hero .hero-bottom { border-color: #3c4937; }
+  .gradient-hero .hero-belief { color: #aab6a0; }
+  .gradient-hero .hero-belief strong { color: #f0f4ea; }
+  .gradient-hero .belief-icon { border-color: #45533c; color: var(--lime); }
+  .gradient-hero .hero-disciplines { color: #8d9c83; }
+  .gradient-hero .discipline-plus { color: #d0784e; }
+  .gradient-hero .scroll-cue { color: #c2cdb4; }
+  @keyframes gradient-bar-flow { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.905); } }
+
   /* Work: three carefully art-directed, explicitly conceptual brands. */
   .work-section { padding-top: 79px; }
   .work-heading { margin-bottom: 31px; }
@@ -1078,6 +1122,31 @@
     .tool-button { min-width: 132px; font-size: 9px; }
     .contact-main h2 { font-size: 16.3vw; }
   }
+  @media (max-width: 1199px) {
+    .gradient-hero-main { min-height: 570px; gap: 34px; }
+    .gradient-hero-content { max-width: 680px; }
+    .gradient-hero .hero-copy { max-width: 520px; }
+    .gradient-hero .hero-art { max-width: 680px; }
+    .gradient-hero .signal-map { height: 285px; }
+  }
+  @media (max-width: 999px) and (min-width: 800px) {
+    .gradient-hero-main { min-height: 540px; }
+    .gradient-hero .hero-art { max-width: 640px; }
+  }
+  @media (max-width: 799px) {
+    .gradient-hero { padding-top: 44px; }
+    .gradient-hero-main { min-height: 0; padding-top: 34px; }
+    .gradient-hero-content { max-width: 640px; }
+    .gradient-hero .hero-copy { max-width: 460px; }
+    .gradient-hero .hero-ctas { gap: 22px; margin-top: 22px; }
+    .gradient-hero .hero-art { max-width: 640px; }
+    .gradient-hero .hero-bottom { margin-top: 26px; }
+  }
+  @media (max-width: 480px) {
+    .gradient-hero-main { padding-top: 28px; }
+    .gradient-hero h1 { font-size: 11.7vw; }
+    .gradient-hero .hero-copy { max-width: 360px; }
+  }
   @media (hover: none) {
     .project-open { opacity: 1; transform: none; }
     .project-card:hover .project-artwork { transform: none; }
@@ -1088,6 +1157,10 @@
   html[data-motion='off'] *, html[data-motion='off'] *::before, html[data-motion='off'] *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   @media print {
     .site-header, .hero-art, .hero-ctas, .scroll-cue, .magnetic-hitbox, .contact-section, .toolkit, .case-step-controls, .chart-explorer { display: none !important; }
+    .gradient-hero, .gradient-hero h1, .gradient-hero h1 .serif, .gradient-hero .hero-eyebrow, .gradient-hero .hero-copy, .gradient-hero .hero-belief, .gradient-hero .hero-disciplines { color: #000; }
+    .gradient-hero::before, .gradient-hero::after, .gradient-bars, .hero-grain { display: none !important; }
+    .gradient-hero { background: #fff; }
+    .gradient-hero .hero-bottom { border-color: #ddd; }
     body { color: #000; background: #fff; }
     .container { width: 100%; }
     .section-pad { padding-block: 30px; }
