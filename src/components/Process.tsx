@@ -26,7 +26,7 @@ export default function Process() {
     return () => context.revert()
   }, [enabled])
   return <section id="approach" className="process-section section-pad container" aria-labelledby="process-heading">
-    <Reveal className="process-intro"><SectionLabel number="05">HOW I WORK</SectionLabel><h2 id="process-heading">Considered steps.<br /><span className="serif">Connected thinking.</span></h2><p>Good strategy is a conversation, not a handoff. Here’s what moving forward together could look like.</p><span className="process-aside"><span className="tiny-cross">+</span> CLARITY AT EVERY STEP</span></Reveal>
+    <Reveal className="process-intro"><SectionLabel number="06">HOW I WORK</SectionLabel><h2 id="process-heading">Considered steps.<br /><span className="serif">Connected thinking.</span></h2><p>Good strategy is a conversation, not a handoff. Here’s what moving forward together could look like.</p><span className="process-aside"><span className="tiny-cross">+</span> CLARITY AT EVERY STEP</span></Reveal>
     <ol className="process-timeline" ref={root}><li className="process-line" aria-hidden="true" role="presentation"><span ref={progress} /></li>{process.map((item, index) => <li key={item.phase} className={`process-item${index <= active ? ' is-active' : ''}`}><span className="process-marker">0{index + 1}</span><Reveal><div className="process-phase"><span>{item.phase}</span><item.icon size={21} strokeWidth={1.4} /></div><h3>{item.title}</h3><p>{item.body}</p><div className="process-outcome"><ArrowUpRight size={14} />{item.outcome}</div></Reveal></li>)}</ol>
   </section>
 }
